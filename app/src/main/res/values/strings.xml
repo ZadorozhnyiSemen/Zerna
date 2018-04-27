@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Zerna</string>
+    <string name="user_photo">photo</string>
+
+    <string name="error_msg">ТРЕБУЕТСЯ ПЕРЕЗАГРУЗКА!</string>
+    <string name="cd_open_menu">Open menu</string>
+    <string name="menu_beta">Меню (бета)</string>
+    <string name="menu_item">menu_item</string>
+</resources>

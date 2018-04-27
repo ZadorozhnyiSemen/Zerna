@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "471875564597",
+    "firebase_url": "https://zerna-13544.firebaseio.com",
+    "project_id": "zerna-13544",
+    "storage_bucket": "zerna-13544.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471875564597:android:5dfa969f46f84389",
+        "android_client_info": {
+          "package_name": "com.semen.zadorozhnyi.zerna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471875564597-fgilcl8r24mrnke7bke3id4sq6du8ppi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.semen.zadorozhnyi.zerna",
+            "certificate_hash": "c6f0ecafcf7148b4938f9ea2f9c44eab95aed931"
+          }
+        },
+        {
+          "client_id": "471875564597-mlrnonq4mn86bn5d83vaetcma3pko9vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe4ChVPxrjTyqL0HBm5B1hSsi0Zl_op2U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471875564597-mlrnonq4mn86bn5d83vaetcma3pko9vb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
