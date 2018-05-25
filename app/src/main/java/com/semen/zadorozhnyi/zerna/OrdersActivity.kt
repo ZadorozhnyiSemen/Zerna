@@ -16,6 +16,9 @@ import com.semen.zadorozhnyi.zerna.domain.Item
 import com.semen.zadorozhnyi.zerna.domain.Order
 import com.semen.zadorozhnyi.zerna.domain.OrderInfo
 import com.semen.zadorozhnyi.zerna.domain.UserInfo
+import com.semen.zadorozhnyi.zerna.firestore.OrdersFirestore
+import com.semen.zadorozhnyi.zerna.interactors.OrdersInteractor
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_orders.*
 
 class OrdersActivity : AppCompatActivity(), View.OnClickListener{
@@ -47,30 +50,7 @@ class OrdersActivity : AppCompatActivity(), View.OnClickListener{
             adapter = ordersAdapter
         }
 
-        val ordersReference = fireStore.collection("orders")
-
-        ordersReference.addSnapshotListener(this) { doc, exception ->
-            if (doc != null && !doc.isEmpty) {
-                progressBar.visibility = View.VISIBLE
-                orders.visibility = View.INVISIBLE
-                doc.documents.forEachIndexed { index, documentSnapshot ->
-                    val order = Order()
-                    orderList.add(index, order)
-                    orderList[index].info = OrderInfo.fromFirebaseOrder(documentSnapshot)
-                    val ordered = getSpecificOrderForOrder(documentSnapshot.id)
-                    val by = getSpecificUserForOrder(documentSnapshot.id)
-                    ordered.get().addOnCompleteListener { it.result.forEach { orderList[index].items.add(Item.fromFirebaseItemInfo(it)) } }
-                    by.get().addOnCompleteListener { it.result.forEach { orderList[index].userInfo = UserInfo.fromFirebaseUserInfo(it) } }
-                }
-
-                orders.postDelayed({ updateData() }, 4000)
-            }
-
-            if (exception != null) {
-                Log.d("Orders activity", "Oooups: $exception")
-            }
-
-        }
+        val ordersFirestore = OrdersInteractor()
     }
 
     override fun onClick(v: View?) {

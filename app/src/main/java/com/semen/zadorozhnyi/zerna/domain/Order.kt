@@ -1,10 +1,21 @@
 package com.semen.zadorozhnyi.zerna.domain
 
-import org.joda.time.DateTime
-import java.util.Date
+import com.google.firebase.firestore.DocumentSnapshot
 
 data class Order(
-        var info: OrderInfo = OrderInfo(DateTime.now(), false),
-        var userInfo: UserInfo = UserInfo(),
+        val id: String,
+        var info: OrderInfo,
         var items: MutableList<Item> = mutableListOf()
-)
+) {
+
+    companion object {
+        fun fromFirebaseOrder(document: DocumentSnapshot): Order {
+            val id = document.id
+            val orderInfo = OrderInfo.fromFirebaseOrderInfo(document)
+            return Order(
+                    id,
+                    orderInfo
+            )
+        }
+    }
+}

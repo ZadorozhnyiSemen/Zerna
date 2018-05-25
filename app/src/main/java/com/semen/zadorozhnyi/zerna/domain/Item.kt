@@ -1,16 +1,24 @@
 package com.semen.zadorozhnyi.zerna.domain
 
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.DocumentSnapshot
 
-data class Item(val name: String = "none", val price: Long = 0, var size: Boolean = false) {
+data class Item(
+        val name: String,
+        val price: Long,
+        val size: Boolean,
+        val orderId: String,
+        val sugar: Boolean,
+        val syrup: String) {
 
     companion object {
-        fun fromFirebaseItemInfo(document: QueryDocumentSnapshot): Item {
+        fun fromFirebaseItem(document: DocumentSnapshot): Item {
             val data = document.data
-            println(data)
-            return Item(data["name"] as String,
-                    data["price"] as Long,
-                    data["size"] as Boolean)
+            return Item(data?.get("beverage") as String,
+                    data["cost"] as Long,
+                    data["size"] as Boolean,
+                    data["orderId"] as String,
+                    data["sugar"] as Boolean,
+                    data["syrup"] as String)
         }
     }
 }

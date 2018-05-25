@@ -1,23 +1,21 @@
 package com.semen.zadorozhnyi.zerna.domain
 
-import android.annotation.SuppressLint
 import com.google.firebase.firestore.DocumentSnapshot
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import java.util.Date
 
-data class OrderInfo(val date: DateTime, var newOrder: Boolean) {
+
+data class OrderInfo(val date: DateTime, var newOrder: Boolean, val userInfo: UserInfo) {
 
     companion object {
-        fun fromFirebaseOrder(document: DocumentSnapshot): OrderInfo {
+        fun fromFirebaseOrderInfo(document: DocumentSnapshot): OrderInfo {
+            val timestamp = document.getTimestamp("time")
             val data = document.data
-            val date = data?.get("time") as Date?
-            val joda = DateTime(date)
+            val joda = DateTime(timestamp?.toDate())
+            val userInfo = UserInfo(data?.get("name") as String)
             return OrderInfo(
                     joda,
-                    data?.get("new") as Boolean
+                    data["new"] as Boolean,
+                    userInfo
             )
         }
     }

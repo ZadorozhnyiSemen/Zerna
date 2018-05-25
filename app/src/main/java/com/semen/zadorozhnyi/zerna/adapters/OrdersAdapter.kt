@@ -30,7 +30,7 @@ class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = getItem(position)
 
-        holder.userName.text = order.userInfo.name
+        //holder.userName.text = order.userInfo.name
         holder.arrivalTime.text = order.info.date.toDateTimeString()
         val newOrder = order.info.newOrder
         if (newOrder) {
